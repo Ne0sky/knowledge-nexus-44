@@ -21,8 +21,8 @@ const Hero = () => {
 
     try {
       const { error } = await supabase
-        .from("waitlist")
-        .insert([{ email }]);
+        .from("waitlist" as never)
+        .insert([{ email }] as never);
 
       if (error) {
         if (error.code === "23505") {
