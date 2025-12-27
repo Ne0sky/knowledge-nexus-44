@@ -22,7 +22,7 @@ const Header = () => {
           <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">How it Works</a>
         </nav>
 
-        <Button variant="glass" size="sm" onClick={() => document.querySelector('input[type="email"]')?.focus()}>
+        <Button variant="glass" size="sm" onClick={() => (document.querySelector('input[type="email"]') as HTMLInputElement)?.focus()}>
           Get Early Access
         </Button>
       </div>
