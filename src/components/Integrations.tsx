@@ -1,65 +1,81 @@
 const integrations = [
-  { name: "GitHub", category: "Code" },
-  { name: "Bitbucket", category: "Code" },
-  { name: "GitLab", category: "Code" },
-  { name: "Slack", category: "Chat" },
-  { name: "Discord", category: "Chat" },
-  { name: "Teams", category: "Chat" },
-  { name: "Jira", category: "Issues" },
-  { name: "Linear", category: "Issues" },
-  { name: "Notion", category: "Docs" },
-  { name: "Confluence", category: "Docs" },
-  { name: "Google Docs", category: "Docs" },
-  { name: "Cursor", category: "IDE" },
-  { name: "Windsurf", category: "IDE" },
-  { name: "Copilot", category: "IDE" },
-  { name: "VS Code", category: "IDE" },
+  { name: "GitHub", emoji: "🐙", category: "Code" },
+  { name: "Bitbucket", emoji: "🪣", category: "Code" },
+  { name: "GitLab", emoji: "🦊", category: "Code" },
+  { name: "Slack", emoji: "💬", category: "Chat" },
+  { name: "Discord", emoji: "🎮", category: "Chat" },
+  { name: "Teams", emoji: "👥", category: "Chat" },
+  { name: "Jira", emoji: "📋", category: "Issues" },
+  { name: "Linear", emoji: "📐", category: "Issues" },
+  { name: "Notion", emoji: "📝", category: "Docs" },
+  { name: "Confluence", emoji: "📚", category: "Docs" },
+  { name: "Google Docs", emoji: "📄", category: "Docs" },
+  { name: "Cursor", emoji: "⚡", category: "IDE" },
+  { name: "Windsurf", emoji: "🏄", category: "IDE" },
+  { name: "Copilot", emoji: "🤖", category: "IDE" },
+  { name: "VS Code", emoji: "💎", category: "IDE" },
 ];
+
+const categories = ["Code", "Chat", "Issues", "Docs", "IDE"];
 
 const Integrations = () => {
   return (
-    <section className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+    <section id="integrations" className="relative py-32 overflow-hidden">
+      {/* Gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/[0.02] to-background" />
       
       <div className="container relative z-10 px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Connect{" "}
-            <span className="gradient-text">Everything</span>
+        <div className="text-center mb-20">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+            Integrations
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
+            Connect your
+            <br />
+            <span className="gradient-text">entire ecosystem</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Seamless integrations with the tools your team already uses. More added every week.
           </p>
         </div>
 
-        {/* Integration grid */}
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
-            {integrations.map((integration, index) => (
-              <div
-                key={integration.name}
-                className="group relative p-4 rounded-xl bg-card/30 border border-border/30 hover:border-primary/50 hover:bg-card/50 transition-all duration-300 text-center"
-                style={{ animationDelay: `${index * 0.05}s` }}
-              >
-                <div className="w-10 h-10 rounded-lg bg-secondary/50 mx-auto mb-2 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-                  <span className="text-lg font-semibold text-primary">{integration.name.charAt(0)}</span>
-                </div>
-                <span className="text-xs font-medium text-foreground">{integration.name}</span>
-                <span className="block text-xs text-muted-foreground mt-0.5">{integration.category}</span>
+        {/* Category-based layout */}
+        <div className="max-w-5xl mx-auto space-y-8">
+          {categories.map((category) => (
+            <div key={category} className="flex flex-wrap items-center gap-4">
+              <span className="w-20 text-sm font-medium text-muted-foreground">{category}</span>
+              <div className="flex-1 flex flex-wrap gap-3">
+                {integrations
+                  .filter((i) => i.category === category)
+                  .map((integration) => (
+                    <div
+                      key={integration.name}
+                      className="group flex items-center gap-3 px-5 py-3 rounded-2xl bg-card border border-border/50 hover:border-primary/30 hover:shadow-soft transition-all duration-300 cursor-default"
+                    >
+                      <span className="text-xl group-hover:scale-110 transition-transform duration-300">{integration.emoji}</span>
+                      <span className="font-medium text-foreground">{integration.name}</span>
+                    </div>
+                  ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
         {/* MCP highlight */}
-        <div className="mt-16 max-w-2xl mx-auto text-center">
-          <div className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <span className="text-sm font-bold text-primary-foreground">MCP</span>
-            </div>
-            <div className="text-left">
-              <p className="font-semibold text-foreground">Model Context Protocol Native</p>
-              <p className="text-sm text-muted-foreground">Connect any MCP-compatible AI IDE instantly</p>
+        <div className="mt-20 max-w-3xl mx-auto">
+          <div className="relative rounded-3xl bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 border border-primary/20 p-8 md:p-12 overflow-hidden">
+            {/* Decorative elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl" />
+            
+            <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
+              <div className="flex-shrink-0 w-20 h-20 rounded-3xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-primary">
+                <span className="text-2xl font-bold text-primary-foreground">MCP</span>
+              </div>
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl font-bold text-foreground mb-2">Model Context Protocol Native</h3>
+                <p className="text-muted-foreground text-lg">Connect any MCP-compatible AI IDE instantly. Cursor, Windsurf, Copilot, and more.</p>
+              </div>
             </div>
           </div>
         </div>

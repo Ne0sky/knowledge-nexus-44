@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Sparkles, Loader2 } from "lucide-react";
+import { ArrowRight, Loader2, Sparkles, Zap, Shield } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -42,67 +42,91 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 hero-glow" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-slow" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: "2s" }} />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      {/* Mesh gradient background */}
+      <div className="absolute inset-0 mesh-gradient opacity-80" />
       
-      {/* Grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-20" />
+      {/* Animated blobs */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-blob" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/15 rounded-full blur-3xl animate-blob" style={{ animationDelay: "-4s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-primary/10 to-accent/10 rounded-full blur-3xl animate-pulse-soft" />
 
       <div className="container relative z-10 px-4 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border/50 backdrop-blur-sm mb-8 animate-fade-in">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm text-muted-foreground">The Complete Knowledge Layer for Your SDLC</span>
+        <div className="max-w-5xl mx-auto text-center">
+          {/* Floating badge */}
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-card border border-border/50 shadow-soft mb-10 animate-fade-in">
+            <div className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10">
+              <Sparkles className="w-3.5 h-3.5 text-primary" />
+            </div>
+            <span className="text-sm font-medium text-foreground">The Complete Knowledge Layer for Modern Teams</span>
           </div>
 
-          {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-slide-up" style={{ animationDelay: "0.1s" }}>
-            Your Codebase,{" "}
-            <span className="gradient-text">Finally Understood</span>
+          {/* Main headline */}
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 animate-slide-up leading-[0.95] tracking-tight">
+            Your codebase,
+            <br />
+            <span className="gradient-text">finally understood.</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-slide-up" style={{ animationDelay: "0.2s" }}>
-            Connect GitHub, Slack, Jira, and more. Let AI understand your entire software development lifecycle. 
-            Query your code, docs, and conversations from any IDE. No vendor lock-in.
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12 animate-slide-up stagger-2 text-balance leading-relaxed">
+            Connect your entire dev ecosystem—GitHub, Slack, Jira, docs—and let AI 
+            understand the full context. Query from any IDE, zero vendor lock-in.
           </p>
 
-          {/* Email capture form */}
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto animate-slide-up" style={{ animationDelay: "0.3s" }}>
+          {/* Email capture form - LARGER */}
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto animate-slide-up stagger-3">
             <Input
               type="email"
-              placeholder="Enter your email"
+              placeholder="Enter your work email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex-1"
+              size="xl"
+              className="flex-1 shadow-soft"
               disabled={isLoading}
             />
-            <Button type="submit" variant="hero" size="lg" disabled={isLoading}>
+            <Button type="submit" variant="hero" size="xl" disabled={isLoading} className="min-w-[180px]">
               {isLoading ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <Loader2 className="w-5 h-5 animate-spin" />
               ) : (
                 <>
                   Get Early Access
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-5 h-5" />
                 </>
               )}
             </Button>
           </form>
 
-          <p className="text-sm text-muted-foreground mt-4 animate-slide-up" style={{ animationDelay: "0.4s" }}>
-            Join 500+ developers on the waitlist. No spam, ever.
-          </p>
+          {/* Trust indicators */}
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-8 animate-slide-up stagger-4">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Zap className="w-4 h-4 text-primary" />
+              <span>Instant setup</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Shield className="w-4 h-4 text-primary" />
+              <span>SOC 2 compliant</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span>500+ on waitlist</span>
+            </div>
+          </div>
 
-          {/* Tech logos hint */}
-          <div className="mt-16 animate-slide-up" style={{ animationDelay: "0.5s" }}>
-            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-6">Works with your favorite tools</p>
-            <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
-              {["GitHub", "Bitbucket", "Slack", "Jira", "Cursor", "VS Code"].map((tool) => (
-                <span key={tool} className="text-sm font-mono text-muted-foreground">{tool}</span>
+          {/* Tool logos */}
+          <div className="mt-20 animate-slide-up stagger-5">
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-8 font-medium">
+              Works with your favorite tools
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+              {["GitHub", "Slack", "Jira", "Cursor", "VS Code", "Bitbucket"].map((tool, index) => (
+                <div 
+                  key={tool} 
+                  className="px-4 py-2 rounded-xl bg-card border border-border/30 text-sm font-medium text-muted-foreground hover:text-foreground hover:border-border transition-all duration-300 hover:shadow-soft cursor-default"
+                  style={{ animationDelay: `${0.6 + index * 0.1}s` }}
+                >
+                  {tool}
+                </div>
               ))}
             </div>
           </div>

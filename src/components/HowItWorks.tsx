@@ -1,100 +1,125 @@
-import { ArrowDown } from "lucide-react";
+import { Check } from "lucide-react";
 
 const steps = [
   {
     number: "01",
-    title: "Connect Your Sources",
-    description: "Link GitHub, Bitbucket, Slack, Jira, and more. Upload docs, PDFs, and any knowledge base. One-click integrations.",
-    gradient: "from-primary to-primary/50"
+    title: "Connect everything",
+    description: "GitHub, Bitbucket, Slack, Jira—one-click integrations. Upload docs, PDFs, and any knowledge base.",
+    highlights: ["One-click setup", "50+ integrations", "Secure OAuth"],
   },
   {
     number: "02", 
-    title: "Intelligent Embedding",
-    description: "Our RAG system processes and embeds everything—code, conversations, issues, docs—into a unified vector database.",
-    gradient: "from-primary/50 to-accent/50"
+    title: "AI processes & learns",
+    description: "Our RAG system processes and embeds everything into a unified vector database. Code, conversations, issues, docs—all connected.",
+    highlights: ["Semantic understanding", "Real-time indexing", "Smart chunking"],
   },
   {
     number: "03",
-    title: "Query From Anywhere",
-    description: "Connect via MCP server to Cursor, Windsurf, Copilot, or any AI IDE. Ask questions in natural language, get precise answers.",
-    gradient: "from-accent/50 to-accent"
+    title: "Query from anywhere",
+    description: "Connect via MCP server to your favorite IDE. Ask questions in natural language, get precise answers with full context.",
+    highlights: ["Works in any IDE", "Natural language", "Instant answers"],
   }
 ];
 
 const HowItWorks = () => {
   return (
-    <section className="relative py-24 overflow-hidden">
+    <section id="how-it-works" className="relative py-32 overflow-hidden">
       <div className="container relative z-10 px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            From Chaos to{" "}
-            <span className="gradient-text">Clarity</span>
+        <div className="text-center mb-20">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
+            How it works
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
+            From chaos to
+            <br />
+            <span className="gradient-text">clarity in minutes</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Three simple steps to transform how your team accesses knowledge.
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto">
+        {/* Steps - horizontal layout on desktop */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20">
           {steps.map((step, index) => (
             <div key={step.number} className="relative">
-              <div className="flex gap-6 md:gap-8 items-start">
-                {/* Number */}
-                <div className={`flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center`}>
-                  <span className="text-xl font-bold text-primary-foreground">{step.number}</span>
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 pb-12">
-                  <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">{step.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{step.description}</p>
-                </div>
-              </div>
-
               {/* Connector line */}
               {index < steps.length - 1 && (
-                <div className="absolute left-8 top-16 w-px h-12 bg-gradient-to-b from-border to-transparent flex items-center justify-center">
-                  <ArrowDown className="w-4 h-4 text-muted-foreground absolute -bottom-2" />
-                </div>
+                <div className="hidden lg:block absolute top-12 left-full w-full h-px bg-gradient-to-r from-border via-primary/30 to-border z-0" style={{ width: "calc(100% - 2rem)" }} />
               )}
+              
+              <div className="relative bg-card rounded-3xl border border-border/50 p-8 hover:border-border hover:shadow-medium transition-all duration-500">
+                {/* Step number */}
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent text-primary-foreground text-2xl font-bold mb-6 shadow-lg">
+                  {step.number}
+                </div>
+                
+                <h3 className="text-2xl font-semibold mb-4 text-foreground">{step.title}</h3>
+                <p className="text-muted-foreground leading-relaxed mb-6">{step.description}</p>
+                
+                {/* Highlights */}
+                <div className="space-y-3">
+                  {step.highlights.map((highlight) => (
+                    <div key={highlight} className="flex items-center gap-3">
+                      <div className="flex items-center justify-center w-5 h-5 rounded-full bg-primary/10">
+                        <Check className="w-3 h-3 text-primary" />
+                      </div>
+                      <span className="text-sm text-foreground">{highlight}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Code preview mockup */}
-        <div className="mt-16 max-w-4xl mx-auto">
-          <div className="rounded-2xl bg-card border border-border overflow-hidden shadow-2xl shadow-background/50">
+        {/* Interactive demo mockup */}
+        <div className="max-w-4xl mx-auto">
+          <div className="rounded-3xl bg-foreground/[0.03] border border-border overflow-hidden shadow-medium">
             {/* Window header */}
-            <div className="flex items-center gap-2 px-4 py-3 bg-secondary/50 border-b border-border">
+            <div className="flex items-center gap-3 px-5 py-4 bg-secondary/50 border-b border-border">
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-destructive/60" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-                <div className="w-3 h-3 rounded-full bg-green-500/60" />
+                <div className="w-3 h-3 rounded-full bg-amber-400/60" />
+                <div className="w-3 h-3 rounded-full bg-emerald-400/60" />
               </div>
-              <span className="text-xs text-muted-foreground font-mono ml-4">cursor-ai</span>
+              <div className="flex-1 flex items-center justify-center">
+                <span className="text-xs text-muted-foreground font-mono px-3 py-1 rounded-full bg-muted/50">cursor — knowledge-layer</span>
+              </div>
             </div>
 
             {/* Code content */}
-            <div className="p-6 font-mono text-sm">
-              <div className="flex items-start gap-4">
-                <div className="text-muted-foreground">{">"}</div>
+            <div className="p-8 font-mono text-sm bg-card">
+              <div className="flex items-start gap-4 text-foreground">
+                <span className="text-primary font-bold">❯</span>
                 <div>
-                  <span className="text-primary">@knowledge</span>{" "}
-                  <span className="text-foreground">Why does the payment service fail for EU customers?</span>
+                  <span className="text-primary font-semibold">@knowledge</span>
+                  <span className="text-muted-foreground ml-2">Why does the payment service fail for EU customers?</span>
                 </div>
               </div>
               
-              <div className="mt-6 pl-8 border-l-2 border-primary/30">
-                <p className="text-muted-foreground mb-3">Found 3 relevant sources:</p>
-                <ul className="space-y-2 text-sm">
-                  <li className="text-foreground/80">📝 Slack #eng-payments: "EU VAT calculation issue discussed by @alex"</li>
-                  <li className="text-foreground/80">🔧 Jira PAYMENT-342: "Fix currency conversion for EUR"</li>
-                  <li className="text-foreground/80">💻 src/payments/vat.ts: Line 45-67 - VAT calculation logic</li>
-                </ul>
-                <p className="mt-4 text-foreground">
-                  The EU payment failure is caused by an incorrect VAT calculation in <code className="px-1.5 py-0.5 rounded bg-secondary text-primary">vat.ts</code>. 
-                  The fix was merged in PR #892 but not yet deployed...
-                </p>
+              <div className="mt-8 pl-6 border-l-2 border-primary/30">
+                <p className="text-muted-foreground text-xs uppercase tracking-wider mb-4">Found 3 relevant sources:</p>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3 p-3 rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors">
+                    <span>💬</span>
+                    <span className="text-foreground">Slack #eng-payments: "EU VAT calculation issue" — @alex, 2 days ago</span>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors">
+                    <span>🎫</span>
+                    <span className="text-foreground">Jira PAYMENT-342: "Fix currency conversion for EUR" — In Progress</span>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors">
+                    <span>📄</span>
+                    <span className="text-foreground">src/payments/vat.ts: Line 45-67 — VAT calculation logic</span>
+                  </div>
+                </div>
+                <div className="mt-6 p-4 rounded-xl bg-primary/5 border border-primary/10">
+                  <p className="text-foreground leading-relaxed">
+                    <span className="text-primary font-semibold">Answer:</span> The EU payment failure is caused by an incorrect VAT calculation in <code className="px-2 py-0.5 rounded-md bg-muted text-primary font-mono text-xs">vat.ts</code>. 
+                    The fix was merged in PR #892 but not yet deployed to production.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
