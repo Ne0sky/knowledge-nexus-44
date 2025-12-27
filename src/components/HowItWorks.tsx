@@ -22,11 +22,26 @@ const steps = [
   }
 ];
 
-const codeExamples = [
+type ExampleType = {
+  id: string;
+  label: string;
+  role: string;
+  query: string;
+  isCode: boolean;
+  fileName?: string;
+  code?: React.ReactNode;
+  contextItems?: Array<{ icon: string; text: string }>;
+  answer?: string;
+  reasons: Array<{ icon: string; text: string; highlight: string }>;
+};
+
+const examples: ExampleType[] = [
   {
     id: "rate-limiter",
-    label: "Rate Limiter",
+    label: "For Developers",
+    role: "Developer",
     query: "How should I implement a rate limiter for our API?",
+    isCode: true,
     fileName: "src/middleware/rateLimiter.ts",
     code: (
       <>
@@ -47,49 +62,32 @@ const codeExamples = [
     reasons: [
       { icon: "📁", text: "Matches your singleton pattern used in auth.ts, db.ts", highlight: "singleton pattern" },
       { icon: "✓", text: "Uses @upstash/redis — already in your package.json", highlight: "@upstash/redis" },
-      { icon: "📋", text: "Follows your team's error handling from CONTRIBUTING.md", highlight: "CONTRIBUTING.md" },
+      { icon: "📋", text: "Follows your team error handling from CONTRIBUTING.md", highlight: "CONTRIBUTING.md" },
     ],
   },
   {
-    id: "payment-service",
-    label: "Payment Service",
-    query: "How do I process payments for EU customers with VAT?",
-    fileName: "src/services/payment.ts",
-    code: (
-      <>
-        <span className="text-violet-400">import</span><span className="text-slate-300">{" { Stripe } "}</span><span className="text-violet-400">from</span><span className="text-amber-300"> &apos;stripe&apos;</span><span className="text-slate-300">;</span>{"\n"}
-        <span className="text-violet-400">import</span><span className="text-slate-300">{" { calculateVAT } "}</span><span className="text-violet-400">from</span><span className="text-amber-300"> &apos;./vat&apos;</span><span className="text-slate-300">;</span>{"\n"}
-        <span className="text-violet-400">import</span><span className="text-slate-300">{" { logger } "}</span><span className="text-violet-400">from</span><span className="text-amber-300"> &apos;@/lib/logger&apos;</span><span className="text-slate-300">;</span>{"\n\n"}
-        <span className="text-slate-500">{"// Using your team's service class pattern from userService.ts"}</span>{"\n"}
-        <span className="text-violet-400">export class</span><span className="text-cyan-400"> PaymentService</span><span className="text-slate-300"> {"{"}</span>{"\n"}
-        <span className="text-slate-300">{"  "}</span><span className="text-violet-400">private</span><span className="text-slate-300"> stripe: </span><span className="text-cyan-400">Stripe</span><span className="text-slate-300">;</span>{"\n\n"}
-        <span className="text-slate-300">{"  "}</span><span className="text-violet-400">async</span><span className="text-cyan-400"> processPayment</span><span className="text-slate-300">({"{"}</span>{"\n"}
-        <span className="text-slate-300">{"    amount, currency, customerId, countryCode"}</span>{"\n"}
-        <span className="text-slate-300">{"  }: "}</span><span className="text-cyan-400">PaymentRequest</span><span className="text-slate-300">) {"{"}</span>{"\n"}
-        <span className="text-slate-300">{"    "}</span><span className="text-violet-400">const</span><span className="text-slate-300"> vatRate = </span><span className="text-cyan-400">calculateVAT</span><span className="text-slate-300">(countryCode);</span>{"\n"}
-        <span className="text-slate-300">{"    "}</span><span className="text-violet-400">const</span><span className="text-slate-300"> totalAmount = amount * (1 + vatRate);</span>{"\n\n"}
-        <span className="text-slate-300">{"    "}</span><span className="text-cyan-400">logger</span><span className="text-slate-300">.info(</span><span className="text-amber-300">&apos;Processing EU payment&apos;</span><span className="text-slate-300">, {"{ customerId, vatRate }"});</span>{"\n\n"}
-        <span className="text-slate-300">{"    "}</span><span className="text-violet-400">return</span><span className="text-slate-300"> this.stripe.paymentIntents.create({"{"}</span>{"\n"}
-        <span className="text-slate-300">{"      amount: "}</span><span className="text-cyan-400">Math</span><span className="text-slate-300">.round(totalAmount),</span>{"\n"}
-        <span className="text-slate-300">{"      currency,"}</span>{"\n"}
-        <span className="text-slate-300">{"      customer: customerId,"}</span>{"\n"}
-        <span className="text-slate-300">{"      metadata: { vat_rate: vatRate.toString() }"}</span>{"\n"}
-        <span className="text-slate-300">{"    });"}</span>{"\n"}
-        <span className="text-slate-300">{"  }"}</span>{"\n"}
-        <span className="text-slate-300">{"}"}</span>
-      </>
-    ),
+    id: "eu-payments",
+    label: "For Managers",
+    role: "Manager",
+    query: "Why are EU payments failing? What is the status?",
+    isCode: false,
+    contextItems: [
+      { icon: "💬", text: "Slack #eng-payments: \"EU VAT calculation has a bug for Germany\" — @alex, 2 days ago" },
+      { icon: "🎫", text: "Jira PAYMENT-342: \"Fix currency conversion for EUR\" — In Progress, assigned to Sarah" },
+      { icon: "📄", text: "Confluence: EU Compliance Doc — Updated yesterday with new VAT rates" },
+      { icon: "🔀", text: "GitHub PR #892: \"Fix VAT calculation\" — Merged, awaiting deployment" },
+    ],
+    answer: "EU payments are failing due to incorrect VAT calculation for German customers. Sarah is working on it (PAYMENT-342). The fix was merged in PR #892 but hasn't been deployed yet. ETA for deployment is tomorrow according to the release schedule.",
     reasons: [
-      { icon: "📁", text: "Uses your service class pattern from userService.ts", highlight: "service class pattern" },
-      { icon: "✓", text: "Imports your existing VAT calculator and logger", highlight: "calculateVAT" },
-      { icon: "💳", text: "Follows Stripe best practices from your payments docs", highlight: "Stripe best practices" },
+      { icon: "💬", text: "Found context from Slack conversations in #eng-payments", highlight: "#eng-payments" },
+      { icon: "🎫", text: "Linked to active Jira ticket with assignee and status", highlight: "PAYMENT-342" },
+      { icon: "🔀", text: "Tracked the fix through GitHub PR to deployment", highlight: "PR #892" },
     ],
   },
 ];
-
 const HowItWorks = () => {
   const [activeExample, setActiveExample] = useState("rate-limiter");
-  const currentExample = codeExamples.find(e => e.id === activeExample) || codeExamples[0];
+  const currentExample = examples.find(e => e.id === activeExample) || examples[0];
 
   return (
     <section id="how-it-works" className="relative py-32 overflow-hidden">
@@ -155,7 +153,7 @@ const HowItWorks = () => {
               
               {/* Tabs */}
               <div className="flex-1 flex items-center justify-center gap-2">
-                {codeExamples.map((example) => (
+                {examples.map((example) => (
                   <button
                     key={example.id}
                     onClick={() => setActiveExample(example.id)}
@@ -184,25 +182,48 @@ const HowItWorks = () => {
               
               {/* Response */}
               <div className="mt-8 pl-6 border-l-2 border-violet-500/30">
-                <p className="text-slate-500 text-xs uppercase tracking-wider mb-4">Based on your codebase patterns & best practices:</p>
+                <p className="text-slate-500 text-xs uppercase tracking-wider mb-4">
+                  {currentExample.isCode ? "Based on your codebase patterns & best practices:" : "Found relevant context from your knowledge base:"}
+                </p>
                 
-                {/* Code example */}
-                <div className="rounded-xl bg-[#0d0d1a] border border-slate-700/50 overflow-hidden">
-                  <div className="flex items-center justify-between px-4 py-2 bg-slate-800/50 border-b border-slate-700/50">
-                    <span className="text-xs text-slate-400">{currentExample.fileName}</span>
-                    <span className="text-xs text-emerald-400">Recommended pattern</span>
+                {currentExample.isCode ? (
+                  /* Code example for developers */
+                  <div className="rounded-xl bg-[#0d0d1a] border border-slate-700/50 overflow-hidden">
+                    <div className="flex items-center justify-between px-4 py-2 bg-slate-800/50 border-b border-slate-700/50">
+                      <span className="text-xs text-slate-400">{currentExample.fileName}</span>
+                      <span className="text-xs text-emerald-400">Recommended pattern</span>
+                    </div>
+                    <pre className="p-4 text-xs md:text-sm overflow-x-auto">
+                      <code>{currentExample.code}</code>
+                    </pre>
                   </div>
-                  <pre className="p-4 text-xs md:text-sm overflow-x-auto">
-                    <code>{currentExample.code}</code>
-                  </pre>
-                </div>
+                ) : (
+                  /* Context items for managers */
+                  <div className="space-y-3">
+                    {currentExample.contextItems?.map((item, idx) => (
+                      <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-slate-800/30 hover:bg-slate-800/50 transition-colors">
+                        <span>{item.icon}</span>
+                        <span className="text-slate-300 text-xs md:text-sm">{item.text}</span>
+                      </div>
+                    ))}
+                    
+                    {/* Answer summary for managers */}
+                    <div className="mt-4 p-4 rounded-xl bg-violet-500/10 border border-violet-500/20">
+                      <p className="text-slate-200 leading-relaxed text-sm">
+                        <span className="text-violet-400 font-semibold">Summary:</span> {currentExample.answer}
+                      </p>
+                    </div>
+                  </div>
+                )}
 
-                {/* Context sources */}
+                {/* Context sources / reasons */}
                 <div className="mt-6 space-y-2">
-                  <p className="text-slate-500 text-xs uppercase tracking-wider mb-3">Why this approach:</p>
+                  <p className="text-slate-500 text-xs uppercase tracking-wider mb-3">
+                    {currentExample.isCode ? "Why this approach:" : "Sources connected:"}
+                  </p>
                   {currentExample.reasons.map((reason, idx) => (
                     <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-slate-800/30 hover:bg-slate-800/50 transition-colors">
-                      <span className={reason.icon === "✓" ? "text-emerald-400" : reason.icon === "💳" ? "text-amber-400" : "text-violet-400"}>{reason.icon}</span>
+                      <span className={reason.icon === "✓" ? "text-emerald-400" : reason.icon === "💳" || reason.icon === "🔀" ? "text-amber-400" : "text-violet-400"}>{reason.icon}</span>
                       <span className="text-slate-300 text-xs md:text-sm">
                         {reason.text.split(reason.highlight).map((part, i, arr) => (
                           <span key={i}>
@@ -217,10 +238,16 @@ const HowItWorks = () => {
                   ))}
                 </div>
 
-                {/* Ship it indicator */}
+                {/* Bottom indicator */}
                 <div className="mt-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
                   <p className="text-slate-200 leading-relaxed text-sm">
-                    <span className="text-emerald-400 font-semibold">Ready to ship:</span> This code follows your existing patterns, uses your installed deps, and matches your team&apos;s style guide. Copy directly into your codebase.
+                    <span className="text-emerald-400 font-semibold">
+                      {currentExample.isCode ? "Ready to ship:" : "Full context:"}
+                    </span>{" "}
+                    {currentExample.isCode 
+                      ? "This code follows your existing patterns, uses your installed deps, and matches your team's style guide."
+                      : "All relevant information from Slack, Jira, GitHub, and docs — connected and summarized instantly."
+                    }
                   </p>
                 </div>
               </div>
