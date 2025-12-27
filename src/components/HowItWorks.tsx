@@ -152,14 +152,14 @@ const HowItWorks = () => {
               </div>
               
               {/* Tabs */}
-              <div className="flex-1 flex items-center justify-center gap-2">
+              <div className="flex-1 flex items-center justify-center gap-3">
                 {examples.map((example) => (
                   <button
                     key={example.id}
                     onClick={() => setActiveExample(example.id)}
-                    className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
+                    className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
                       activeExample === example.id
-                        ? "bg-primary text-primary-foreground shadow-sm"
+                        ? "bg-primary text-primary-foreground shadow-md"
                         : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
                     }`}
                   >
