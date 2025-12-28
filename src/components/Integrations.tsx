@@ -72,7 +72,7 @@ const Integrations = () => {
 
         {/* MCP highlight */}
         
-    </section>
+    
   );
 };
 
