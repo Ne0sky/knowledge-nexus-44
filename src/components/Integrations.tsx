@@ -12,10 +12,13 @@ const integrations = [
   { name: "Notion", category: "Docs" },
   { name: "Confluence", category: "Docs" },
   { name: "Google Docs", category: "Docs" },
+  { name: "Dropbox", category: "Docs" },
+  { name: "OneDrive", category: "Docs" },
   { name: "Cursor", category: "IDE" },
   { name: "Windsurf", category: "IDE" },
   { name: "Copilot", category: "IDE" },
   { name: "VS Code", category: "IDE" },
+  { name: "...", category: "IDE" },
 ];
 
 const categories = ["Code", "Chat", "Issues", "Docs", "IDE"];
