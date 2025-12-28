@@ -139,7 +139,7 @@ const HowItWorks = () => {
     <section id="how-it-works" className="relative py-32 overflow-hidden">
       <div className="container relative z-10 px-4">
         <div className="text-center mb-20">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
             How it works
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
