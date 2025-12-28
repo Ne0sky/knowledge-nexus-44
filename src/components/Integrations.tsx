@@ -1,19 +1,21 @@
+import { IntegrationIcons } from "./IntegrationIcons";
+
 const integrations = [
-  { name: "GitHub", emoji: "🐙", category: "Code" },
-  { name: "Bitbucket", emoji: "🪣", category: "Code" },
-  { name: "GitLab", emoji: "🦊", category: "Code" },
-  { name: "Slack", emoji: "💬", category: "Chat" },
-  { name: "Discord", emoji: "🎮", category: "Chat" },
-  { name: "Teams", emoji: "👥", category: "Chat" },
-  { name: "Jira", emoji: "📋", category: "Issues" },
-  { name: "Linear", emoji: "📐", category: "Issues" },
-  { name: "Notion", emoji: "📝", category: "Docs" },
-  { name: "Confluence", emoji: "📚", category: "Docs" },
-  { name: "Google Docs", emoji: "📄", category: "Docs" },
-  { name: "Cursor", emoji: "⚡", category: "IDE" },
-  { name: "Windsurf", emoji: "🏄", category: "IDE" },
-  { name: "Copilot", emoji: "🤖", category: "IDE" },
-  { name: "VS Code", emoji: "💎", category: "IDE" },
+  { name: "GitHub", category: "Code" },
+  { name: "Bitbucket", category: "Code" },
+  { name: "GitLab", category: "Code" },
+  { name: "Slack", category: "Chat" },
+  { name: "Discord", category: "Chat" },
+  { name: "Teams", category: "Chat" },
+  { name: "Jira", category: "Issues" },
+  { name: "Linear", category: "Issues" },
+  { name: "Notion", category: "Docs" },
+  { name: "Confluence", category: "Docs" },
+  { name: "Google Docs", category: "Docs" },
+  { name: "Cursor", category: "IDE" },
+  { name: "Windsurf", category: "IDE" },
+  { name: "Copilot", category: "IDE" },
+  { name: "VS Code", category: "IDE" },
 ];
 
 const categories = ["Code", "Chat", "Issues", "Docs", "IDE"];
@@ -23,7 +25,7 @@ const Integrations = () => {
     <section id="integrations" className="relative py-32 overflow-hidden">
       {/* Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/[0.02] to-background" />
-      
+
       <div className="container relative z-10 px-4">
         <div className="text-center mb-20">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
@@ -52,7 +54,9 @@ const Integrations = () => {
                       key={integration.name}
                       className="group flex items-center gap-3 px-5 py-3 rounded-2xl bg-card border border-border/50 hover:border-primary/30 hover:shadow-soft transition-all duration-300 cursor-default"
                     >
-                      <span className="text-xl group-hover:scale-110 transition-transform duration-300">{integration.emoji}</span>
+                      <span className="w-5 h-5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        {IntegrationIcons[integration.name]}
+                      </span>
                       <span className="font-medium text-foreground">{integration.name}</span>
                     </div>
                   ))}
@@ -67,14 +71,16 @@ const Integrations = () => {
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl" />
-            
+
             <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
               <div className="flex-shrink-0 w-20 h-20 rounded-3xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-primary">
                 <span className="text-2xl font-bold text-primary-foreground">MCP</span>
               </div>
               <div className="text-center md:text-left">
                 <h3 className="text-2xl font-bold text-foreground mb-2">Model Context Protocol Native</h3>
-                <p className="text-muted-foreground text-lg">Connect any MCP-compatible AI IDE instantly. Cursor, Windsurf, Copilot, and more.</p>
+                <p className="text-muted-foreground text-lg">
+                  Connect any MCP-compatible AI IDE instantly. Cursor, Windsurf, Copilot, and more.
+                </p>
               </div>
             </div>
           </div>
