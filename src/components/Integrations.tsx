@@ -71,20 +71,7 @@ const Integrations = () => {
         </div>
 
         {/* MCP highlight */}
-        <div className="mt-20 max-w-3xl mx-auto">
-          <div className="relative rounded-3xl bg-gradient-to-r from-primary/10 via-accent/10 to-primary/10 border border-primary/20 p-8 md:p-12 overflow-hidden">
-            {/* Decorative elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent/10 rounded-full blur-3xl" />
-
-            <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
-              <div className="flex-shrink-0 w-20 h-20 rounded-3xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-primary">
-                <span className="text-2xl font-bold text-primary-foreground">MCP</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        
     </section>
   );
 };
