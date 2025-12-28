@@ -55,16 +55,10 @@ const Hero = () => {
       <div className="container relative z-10 px-4 py-20">
         <div className="max-w-5xl mx-auto text-center">
           {/* Floating badge */}
-          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-card border border-border/50 shadow-soft mb-10 animate-fade-in">
-            <div className="flex items-center justify-center w-6 h-6 rounded-full bg-primary/10">
-              <Sparkles className="w-3.5 h-3.5 text-primary" />
-            </div>
-            <span className="text-sm font-medium text-foreground">The Complete Knowledge Layer for Modern Teams</span>
-          </div>
 
           {/* Main headline */}
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 animate-slide-up leading-[0.95] tracking-tight">
-            Your codebase,
+            Your context,
             <br />
             <span className="gradient-text">finally understood.</span>
           </h1>
