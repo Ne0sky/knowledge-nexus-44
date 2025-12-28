@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { Layers, Menu, X } from "lucide-react";
+import { ArrowRight, Layers, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const scrollToEmail = () => {
@@ -26,19 +26,34 @@ const Header = () => {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-10">
-          <a href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Features</a>
-          <a href="#integrations" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">Integrations</a>
-          <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">How it Works</a>
+          <a
+            href="#features"
+            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Features
+          </a>
+          <a
+            href="#integrations"
+            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Integrations
+          </a>
+          <a
+            href="#how-it-works"
+            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          >
+            How it Works
+          </a>
         </nav>
 
         <div className="hidden md:block">
           <Button variant="default" size="default" onClick={scrollToEmail}>
-            Get Early Access
+            Join Waitlist
           </Button>
         </div>
 
         {/* Mobile menu button */}
-        <button 
+        <button
           className="md:hidden p-2 rounded-xl hover:bg-secondary transition-colors"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
@@ -50,9 +65,27 @@ const Header = () => {
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border/30 py-6 px-4">
           <nav className="flex flex-col gap-4">
-            <a href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>Features</a>
-            <a href="#integrations" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>Integrations</a>
-            <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>How it Works</a>
+            <a
+              href="#features"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Features
+            </a>
+            <a
+              href="#integrations"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Integrations
+            </a>
+            <a
+              href="#how-it-works"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              How it Works
+            </a>
             <Button variant="default" size="default" onClick={scrollToEmail} className="mt-2">
               Get Early Access
             </Button>
