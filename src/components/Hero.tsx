@@ -97,18 +97,11 @@ const Hero = () => {
 
           {/* Trust indicators */}
           <div className="mt-10 flex flex-wrap items-center justify-center gap-8 animate-slide-up stagger-4">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Zap className="w-4 h-4 text-primary" />
-              <span>Instant setup</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Shield className="w-4 h-4 text-primary" />
-              <span>SOC 2 compliant</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span>500+ on waitlist</span>
-            </div>
+            <span className="text-sm text-muted-foreground">Instant setup</span>
+            <span className="text-sm text-muted-foreground">•</span>
+            <span className="text-sm text-muted-foreground">SOC 2 compliant</span>
+            <span className="text-sm text-muted-foreground">•</span>
+            <span className="text-sm text-muted-foreground">500+ on waitlist</span>
           </div>
 
           {/* Tool logos */}
