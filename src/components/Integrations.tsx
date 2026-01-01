@@ -9,11 +9,11 @@ const integrations = [
   { name: "Teams", category: "Chat" },
   { name: "Jira", category: "Issues" },
   { name: "Linear", category: "Issues" },
-  { name: "Notion", category: "Docs" },
-  { name: "Confluence", category: "Docs" },
-  { name: "Google Docs", category: "Docs" },
-  { name: "Dropbox", category: "Docs" },
-  { name: "OneDrive", category: "Docs" },
+  { name: "Notion", category: "Local" },
+  { name: "Confluence", category: "Local" },
+  { name: "Google Docs", category: "Local" },
+  { name: "Dropbox", category: "Local" },
+  { name: "OneDrive", category: "Local" },
   { name: "Cursor", category: "IDE" },
   { name: "Windsurf", category: "IDE" },
   { name: "Copilot", category: "IDE" },
@@ -21,7 +21,7 @@ const integrations = [
   { name: "...", category: "IDE" },
 ];
 
-const categories = ["Code", "Chat", "Issues", "Docs", "IDE"];
+const categories = ["Code", "Chat", "Issues", "Local", "IDE"];
 
 const Integrations = () => {
   return (
