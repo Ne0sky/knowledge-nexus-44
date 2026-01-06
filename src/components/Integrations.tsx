@@ -9,19 +9,20 @@ const integrations = [
   { name: "Teams", category: "Chat" },
   { name: "Jira", category: "Issues" },
   { name: "Linear", category: "Issues" },
-  { name: "Notion", category: "Local" },
-  { name: "Confluence", category: "Local" },
-  { name: "Google Docs", category: "Local" },
-  { name: "Dropbox", category: "Local" },
-  { name: "OneDrive", category: "Local" },
+  { name: "Notion", category: "Docs" },
+
+  { name: "Google Docs", category: "Docs" },
+  { name: "Dropbox", category: "Docs" },
+
+  { name: "Local", category: "Docs" },
+  { name: "...", category: "Docs" },
   { name: "Cursor", category: "IDE" },
   { name: "Windsurf", category: "IDE" },
   { name: "Copilot", category: "IDE" },
-  { name: "VS Code", category: "IDE" },
   { name: "...", category: "IDE" },
 ];
 
-const categories = ["Code", "Chat", "Issues", "Local", "IDE"];
+const categories = ["Code", "Chat", "Issues", "Docs", "IDE"];
 
 const Integrations = () => {
   return (
@@ -69,7 +70,6 @@ const Integrations = () => {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );
