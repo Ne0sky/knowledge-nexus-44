@@ -1,4 +1,4 @@
-import { Layers } from "lucide-react";
+import confuseLogo from "@/assets/confuse-logo.jpeg";
 
 const Footer = () => {
   return (
@@ -7,9 +7,7 @@ const Footer = () => {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <Layers className="w-5 h-5 text-primary-foreground" />
-              </div>
+              <img src={confuseLogo} alt="ConFuse logo" className="w-10 h-10 rounded-xl object-cover" />
               <span className="text-xl font-semibold text-foreground">ConFuse</span>
             </div>
 
