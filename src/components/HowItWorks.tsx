@@ -12,7 +12,7 @@ const steps = [
     number: "02",
     title: "AI processes & learns",
     description:
-      "Our RAG system processes and embeds everything into a vector database. Code, conversations, issues, docs - all connected.",
+      "Our RAG system processes and embeds everything into a unified database. Code, conversations, issues, docs - all connected.",
     highlights: ["Semantic understanding", "Real-time indexing", "Smart chunking"],
   },
   {
