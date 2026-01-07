@@ -11,7 +11,7 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>KnowledgeLayer - The Complete Knowledge Layer for Your SDLC</title>
+        <title>ConFuse</title>
         <meta name="description" content="Connect GitHub, Slack, Jira, and more. Let AI understand your entire software development lifecycle. Query your code, docs, and conversations from any IDE." />
         <meta name="keywords" content="RAG, knowledge base, code intelligence, AI, SDLC, developer tools, MCP" />
         <link rel="canonical" href="https://knowledgelayer.dev" />
