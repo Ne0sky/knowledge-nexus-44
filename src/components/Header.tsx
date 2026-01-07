@@ -20,7 +20,7 @@ const Header = () => {
       <div className="container flex items-center justify-between h-18 px-4 py-4">
         <button onClick={scrollToTop} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           <img src={confuseLogo} alt="ConFuse logo" className="w-10 h-10 rounded-xl object-cover" />
-          <span className="text-xl font-semibold text-foreground">ConFuse</span>
+          <span className="text-2xl font-bold text-foreground">ConFuse</span>
         </button>
 
         {/* Desktop nav */}
